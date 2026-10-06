@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.tcs.certificacion'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    karateVersion = '1.4.1'
+}
+
+dependencies {
+    testImplementation "com.intuit.karate:karate-junit5:${karateVersion}"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'karate.env', System.properties.getProperty('karate.env', 'dev')
+    outputs.upToDateWhen { false }
+}
+

@@ -1,0 +1,35 @@
+{
+  "registro": [
+    {
+      "caso": "Crear un nuevo usuario en signup",
+      "username": null,
+      "password": "Password123!",
+      "responseSchema": "#string",
+      "expectedResponse": "\"\""
+    },
+    {
+      "caso": "Intentar crear un usuario ya existente",
+      "username": "testuser_existente",
+      "password": "password123",
+      "responseSchema": { "errorMessage": "#string" },
+      "expectedResponse": { "errorMessage": "This user already exist." }
+    }
+  ],
+  "login": [
+    {
+      "caso": "Usuario y password correcto en login",
+      "username": "testuser_existente",
+      "password": "password123",
+      "responseSchema": "#string",
+      "expectedContent": "Auth_token:"
+    },
+    {
+      "caso": "Usuario y password incorrecto en login",
+      "username": "testuser_existente",
+      "password": "wrong_password",
+      "responseSchema": { "errorMessage": "#string" },
+      "expectedContent": { "errorMessage": "Wrong password." }
+    }
+  ]
+}
+

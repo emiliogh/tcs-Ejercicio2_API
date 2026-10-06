@@ -1,0 +1,53 @@
+<testsuite failures="0" name="features/gestion_usuarios.feature" skipped="0" tests="4" time="2.730812"><testcase classname="features.gestion_usuarios" name="Registro - Crear un nuevo usuario en signup" time="1.35316"><system-out>* url baseUrl ............................................................. passed
+* configure headers = headers ............................................. passed
+* def randomUser = 'user_' + java.util.UUID.randomUUID().toString() ....... passed
+* def maxResponseTime = 5000 .............................................. passed
+* def requestUsername = username == null ? randomUser : username .......... passed
+Given path 'signup' ....................................................... passed
+And request { "username": '#(requestUsername)', "password": '#(password)' } . passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And assert responseTime &lt; maxResponseTime ................................. passed
+And match response == responseSchema ...................................... passed
+* def normalizedResponse = karate.typeOf(response) == 'string' ? response.trim() : response . passed
+And match normalizedResponse == expectedResponse .......................... passed
+</system-out></testcase>
+<testcase classname="features.gestion_usuarios" name="Registro - Intentar crear un usuario ya existente" time="0.388539"><system-out>* url baseUrl ............................................................. passed
+* configure headers = headers ............................................. passed
+* def randomUser = 'user_' + java.util.UUID.randomUUID().toString() ....... passed
+* def maxResponseTime = 5000 .............................................. passed
+* def requestUsername = username == null ? randomUser : username .......... passed
+Given path 'signup' ....................................................... passed
+And request { "username": '#(requestUsername)', "password": '#(password)' } . passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And assert responseTime &lt; maxResponseTime ................................. passed
+And match response == responseSchema ...................................... passed
+* def normalizedResponse = karate.typeOf(response) == 'string' ? response.trim() : response . passed
+And match normalizedResponse == expectedResponse .......................... passed
+</system-out></testcase>
+<testcase classname="features.gestion_usuarios" name="Autenticación - Usuario y password correcto en login" time="0.451807"><system-out>* url baseUrl ............................................................. passed
+* configure headers = headers ............................................. passed
+* def randomUser = 'user_' + java.util.UUID.randomUUID().toString() ....... passed
+* def maxResponseTime = 5000 .............................................. passed
+Given path 'login' ........................................................ passed
+And request { "username": '#(username)', "password": '#(password)' } ...... passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And assert responseTime &lt; maxResponseTime ................................. passed
+And match response == responseSchema ...................................... passed
+And match response contains expectedContent ............................... passed
+</system-out></testcase>
+<testcase classname="features.gestion_usuarios" name="Autenticación - Usuario y password incorrecto en login" time="0.537307"><system-out>* url baseUrl ............................................................. passed
+* configure headers = headers ............................................. passed
+* def randomUser = 'user_' + java.util.UUID.randomUUID().toString() ....... passed
+* def maxResponseTime = 5000 .............................................. passed
+Given path 'login' ........................................................ passed
+And request { "username": '#(username)', "password": '#(password)' } ...... passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And assert responseTime &lt; maxResponseTime ................................. passed
+And match response == responseSchema ...................................... passed
+And match response contains expectedContent ............................... passed
+</system-out></testcase>
+</testsuite>
